@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora Azure</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Calculadora desplegada en Azure</h1>
+
+  <input id="a" type="number" placeholder="Número A">
+  <input id="b" type="number" placeholder="Número B">
+
+  <div>
+    <button onclick="calcular('suma')">Sumar</button>
+    <button onclick="calcular('resta')">Restar</button>
+    <button onclick="calcular('mult')">Multiplicar</button>
+    <button onclick="calcular('div')">Dividir</button>
+    <button onclick="calcular('modulo')">Módulo</button>
+    <button onclick="calcular('mcm')">MCM</button>
+  </div>
+
+  <hr>
+
+  <input id="x" type="number" placeholder="Número para raíz">
+  <button onclick="calcularRaiz()">Raíz</button>
+
+  <h2>Resultado</h2>
+  <pre id="resultado"></pre>
+
+  <script src="script.js"></script>
+</body>
+</html>
