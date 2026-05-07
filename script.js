@@ -27,3 +27,28 @@ async function calcularFactorial() {
 
   document.getElementById("resultado").textContent = JSON.stringify(data, null, 2);
 }
+
+async function enviarChat() {
+  const mensaje = document.getElementById("mensajeChat").value;
+
+  if (!mensaje.trim()) {
+    document.getElementById("respuestaChat").textContent = "Escribe un mensaje.";
+    return;
+  }
+
+  document.getElementById("respuestaChat").textContent = "Consultando al modelo...";
+
+  const response = await fetch(`${API_URL}/chat`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      mensaje: mensaje
+    })
+  });
+
+  const data = await response.json();
+
+  document.getElementById("respuestaChat").textContent = data.respuesta;
+}
