@@ -18,3 +18,12 @@ async function calcularRaiz() {
 
   document.getElementById("resultado").textContent = JSON.stringify(data, null, 2);
 }
+
+async function calcularFactorial() {
+  const a = document.getElementById("y").value;
+
+  const response = await fetch(`${API_URL}/factorial?n=${a}`);
+  const data = await response.json();
+
+  document.getElementById("resultado").textContent = JSON.stringify(data, null, 2);
+}

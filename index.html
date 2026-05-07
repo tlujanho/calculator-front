@@ -12,11 +12,13 @@
   <input id="b" type="number" placeholder="Número B">
 
   <div>
-    <button onclick="calcular('suma')">Sumar</button>
-    <button onclick="calcular('resta')">Restar</button>
-    <button onclick="calcular('mult')">Multiplicar</button>
-    <button onclick="calcular('div')">Dividir</button>
+    <button onclick="calcular('sumar')">Sumar</button>
+    <button onclick="calcular('restar')">Restar</button>
+    <button onclick="calcular('multiplicar')">Multiplicar</button>
+    <button onclick="calcular('dividir')">Dividir</button>
+	<button onclick="calcular('potencia')">Potencia</button>
     <button onclick="calcular('modulo')">Módulo</button>
+	<button onclick="calcular('mcd')">MCD</button>
     <button onclick="calcular('mcm')">MCM</button>
   </div>
 
@@ -24,6 +26,9 @@
 
   <input id="x" type="number" placeholder="Número para raíz">
   <button onclick="calcularRaiz()">Raíz</button>
+  
+  <input id="y" type="number" placeholder="Número para factorial">
+  <button onclick="calcularFactorial()">Factorial</button>
 
   <h2>Resultado</h2>
   <pre id="resultado"></pre>
