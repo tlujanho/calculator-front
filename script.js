@@ -52,3 +52,55 @@ async function enviarChat() {
 
   document.getElementById("respuestaChat").textContent = data.respuesta;
 }
+
+function detectarDocumento(mensaje) {
+  const texto = mensaje.toLowerCase();
+
+  if (texto.includes("doc001")) return "doc001.txt";
+  if (texto.includes("doc002")) return "doc002.txt";
+  if (texto.includes("doc003")) return "doc003.txt";
+
+  return null;
+}
+
+async function enviarChat() {
+  const mensaje = document.getElementById("mensajeChat").value;
+  const respuestaChat = document.getElementById("respuestaChat");
+
+  if (!mensaje.trim()) {
+    respuestaChat.textContent = "Escribe un mensaje.";
+    return;
+  }
+
+  respuestaChat.textContent = "Procesando...";
+
+  const documento = detectarDocumento(mensaje);
+
+  if (documento) {
+    const response = await fetch(`${API_URL}/documentos/${documento}`);
+    const data = await response.json();
+
+    respuestaChat.innerHTML = `
+      Documento encontrado: ${documento}<br><br>
+      <a href="${data.url}" target="_blank" download>
+        Descargar ${documento}
+      </a>
+    `;
+
+    return;
+  }
+
+  const response = await fetch(`${API_URL}/chat`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      mensaje: mensaje
+    })
+  });
+
+  const data = await response.json();
+
+  respuestaChat.textContent = data.respuesta;
+}
