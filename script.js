@@ -74,33 +74,25 @@ async function enviarChat() {
 
   respuestaChat.textContent = "Procesando...";
 
-  const documento = detectarDocumento(mensaje);
-
-  if (documento) {
-    const response = await fetch(`${API_URL}/documentos/${documento}`);
-    const data = await response.json();
-
-    respuestaChat.innerHTML = `
-      Documento encontrado: ${documento}<br><br>
-      <a href="${data.url}" target="_blank" download>
-        Descargar ${documento}
-      </a>
-    `;
-
-    return;
-  }
-
   const response = await fetch(`${API_URL}/chat`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({
-      mensaje: mensaje
-    })
+    body: JSON.stringify({ mensaje })
   });
 
   const data = await response.json();
+
+  if (data.operacion === "descarga_documento" && data.url) {
+    respuestaChat.innerHTML = `
+      ${data.respuesta}<br><br>
+      <a href="${data.url}" target="_blank" download="${data.documento}">
+        Descargar ${data.documento}
+      </a>
+    `;
+    return;
+  }
 
   respuestaChat.textContent = data.respuesta;
 }
