@@ -57,7 +57,7 @@ async function enviarChat() {
       <p><strong>Tema:</strong> ${data.tema || ""}</p>
       <p><strong>Documento sugerido:</strong> ${data.documento_sugerido}</p>
       <a href="${data.url_descarga}" target="_blank" download="${data.documento_sugerido}">
-        Descargar documento relacionado
+        Descargar ${data.documento_sugerido}
       </a>
     `;
   } else {

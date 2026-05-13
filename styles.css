@@ -3,9 +3,11 @@ body {
   margin: 40px;
 }
 
-input {
+input,
+textarea {
   padding: 8px;
   margin: 5px;
+  width: 300px;
 }
 
 button {
@@ -17,4 +19,29 @@ button {
 pre {
   background: #f4f4f4;
   padding: 15px;
+}
+
+/* 🔥 Chatbot */
+#respuestaChat {
+  margin-top: 15px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  text-align: left;
+  white-space: pre-line;
+  max-width: 700px;
+  line-height: 1.5;
+}
+
+#respuestaChat a {
+  display: inline-block;
+  margin-top: 10px;
+  text-decoration: none;
+  color: #0066cc;
+  font-weight: bold;
+}
+
+#respuestaChat a:hover {
+  text-decoration: underline;
 }
