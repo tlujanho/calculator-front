@@ -49,18 +49,20 @@ async function enviarChat() {
 
   const data = await response.json();
 
+  console.log("Respuesta del backend:", data);
+
   if (data.url_descarga) {
     respuestaChat.innerHTML = `
       <p>${data.respuesta}</p>
+      <p><strong>Tema:</strong> ${data.tema || ""}</p>
       <p><strong>Documento sugerido:</strong> ${data.documento_sugerido}</p>
       <a href="${data.url_descarga}" target="_blank" download="${data.documento_sugerido}">
         Descargar documento relacionado
       </a>
     `;
-    return;
+  } else {
+    respuestaChat.textContent = data.respuesta;
   }
-
-  respuestaChat.textContent = data.respuesta;
 }
 
 function detectarDocumento(mensaje) {
