@@ -30,27 +30,37 @@ async function calcularFactorial() {
 
 async function enviarChat() {
   const mensaje = document.getElementById("mensajeChat").value;
+  const respuestaChat = document.getElementById("respuestaChat");
 
   if (!mensaje.trim()) {
-    document.getElementById("respuestaChat").textContent = "Escribe un mensaje.";
+    respuestaChat.textContent = "Escribe un mensaje.";
     return;
   }
 
-  document.getElementById("respuestaChat").textContent = "Consultando al modelo...";
+  respuestaChat.textContent = "Procesando...";
 
   const response = await fetch(`${API_URL}/chat`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({
-      mensaje: mensaje
-    })
+    body: JSON.stringify({ mensaje })
   });
 
   const data = await response.json();
 
-  document.getElementById("respuestaChat").textContent = data.respuesta;
+  if (data.url_descarga) {
+    respuestaChat.innerHTML = `
+      <p>${data.respuesta}</p>
+      <p><strong>Documento sugerido:</strong> ${data.documento_sugerido}</p>
+      <a href="${data.url_descarga}" target="_blank" download="${data.documento_sugerido}">
+        Descargar documento relacionado
+      </a>
+    `;
+    return;
+  }
+
+  respuestaChat.textContent = data.respuesta;
 }
 
 function detectarDocumento(mensaje) {
