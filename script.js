@@ -64,3 +64,22 @@ async function enviarChat() {
     respuestaChat.textContent = data.respuesta;
   }
 }
+
+document.getElementById("sendButton").addEventListener("click", sendPayments);
+
+async function sendPayments() {
+  const rawText = document.getElementById("payments").value;
+
+  const response = await fetch("http://localhost:7071/api/enqueue-payments", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      paymentsText: rawText
+    })
+  });
+
+  const message = await response.text();
+  alert(message);
+}
