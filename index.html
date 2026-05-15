@@ -7,6 +7,36 @@
 </head>
 <body>
 
+  <h1>Calculadora desplegada en Azure</h1>
+
+  <input id="a" type="number" placeholder="Número A">
+  <input id="b" type="number" placeholder="Número B">
+
+  <div>
+    <button onclick="calcular('sumar')">Sumar</button>
+    <button onclick="calcular('restar')">Restar</button>
+    <button onclick="calcular('multiplicar')">Multiplicar</button>
+    <button onclick="calcular('dividir')">Dividir</button>
+	<button onclick="calcular('potencia')">Potencia</button>
+    <button onclick="calcular('modulo')">Módulo</button>
+	<button onclick="calcular('mcd')">MCD</button>
+    <button onclick="calcular('mcm')">MCM</button>
+	<button onclick="calcular('promedio')">Promedio</button>
+  </div>
+
+  <hr>
+
+  <input id="x" type="number" placeholder="Número para raíz">
+  <button onclick="calcularRaiz()">Raíz</button>
+  
+  <input id="y" type="number" placeholder="Número para factorial">
+  <button onclick="calcularFactorial()">Factorial</button>
+
+  <h2>Resultado</h2>
+  <pre id="resultado"></pre>
+  
+  <hr>
+
   <h2>Chatbot IA</h2>
 
   <textarea id="mensajeChat" placeholder="Escribe tu mensaje..." rows="4" cols="50"></textarea>
